@@ -4,20 +4,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CompteTest {
+	private Compte c;
+	
+	@BeforeEach
+	void init() {
+		this.c = new Compte();
+	}
 	
 	@Test
 	public void newAccountsStartWithCreditAndDebitOf0() {
-		Compte c = new Compte();
-		assertEquals(0, c.getCredit());
-		assertEquals(0, c.getDebit());
+		Compte c2 = new Compte();
+		assertEquals(0, c2.getCredit());
+		assertEquals(0, c2.getDebit());
 	}
 	
 	@Test
 	public void creditAccountIncrementsCreditVariable() {
-		Compte c = new Compte();
-		assertEquals(0, c.getCredit());
-		c.creditAccount(50);
-		assertEquals(50, c.getCredit());
+		assertEquals(0, this.c.getCredit());
+		this.c.creditAccount(50);
+		assertEquals(50, this.c.getCredit());
 	}
 
 }
