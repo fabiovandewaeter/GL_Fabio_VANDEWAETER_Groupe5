@@ -31,4 +31,18 @@ public class CompteTest {
 		this.c.debitAccount(50);
 		assertEquals(50, this.c.getDebit());
 	}
+	
+	@Test
+	public void creditAccountDoesNotIncrementCreditVariableWhenNegativeAmount() {
+		assertEquals(0, this.c.getCredit());
+		this.c.creditAccount(-50);
+		assertEquals(0, this.c.getCredit());
+	}
+	
+	@Test
+	public void debitAccountDoesNotIncrementCreditVariableWhenNegativeAmount() {
+		assertEquals(0, this.c.getDebit());
+		this.c.debitAccount(-50);
+		assertEquals(0, this.c.getDebit());
+	}
 }
