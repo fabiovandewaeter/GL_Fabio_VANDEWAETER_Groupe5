@@ -45,4 +45,13 @@ public class CompteTest {
 		this.c.debitAccount(-50);
 		assertEquals(0, this.c.getDebit());
 	}
+	
+	@Test
+	public void accountBalanceIsGoodAfterCreditsAndDebits() {
+		assertEquals(0, this.c.getBalance());
+		this.c.debitAccount(50);
+		assertEquals(-50, this.c.getBalance());
+		this.c.creditAccount(50);
+		assertEquals(0, this.c.getBalance());
+	}
 }
