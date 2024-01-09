@@ -19,4 +19,8 @@ public class Compte {
 	public void creditAccount(int amount) {
 		this.credit += amount;
 	}
+	
+	public void debitAccount(int amount) {
+		this.debit += amount;
+	}
 }
