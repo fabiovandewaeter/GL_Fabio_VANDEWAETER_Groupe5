@@ -24,5 +24,11 @@ public class CompteTest {
 		this.c.creditAccount(50);
 		assertEquals(50, this.c.getCredit());
 	}
-
+	
+	@Test
+	public void debitAccountIncrementsDebitVariable() {
+		assertEquals(0, this.c.getDebit());
+		this.c.debitAccount(50);
+		assertEquals(50, this.c.getDebit());
+	}
 }
