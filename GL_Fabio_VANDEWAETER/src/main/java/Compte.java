@@ -27,4 +27,8 @@ public class Compte {
 			this.debit += amount;
 		}
 	}
+	
+	public int getBalance() {
+		return this.credit-this.debit;
+	}
 }
