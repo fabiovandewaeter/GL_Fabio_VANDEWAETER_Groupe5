@@ -17,10 +17,14 @@ public class Compte {
 	}
 	
 	public void creditAccount(int amount) {
-		this.credit += amount;
+		if (amount >= 0) {
+			this.credit += amount;
+		}
 	}
 	
 	public void debitAccount(int amount) {
-		this.debit += amount;
+		if (amount >= 0) {
+			this.debit += amount;
+		}
 	}
 }
