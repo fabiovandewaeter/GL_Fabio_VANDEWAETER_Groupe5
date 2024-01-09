@@ -54,4 +54,13 @@ public class CompteTest {
 		this.c.creditAccount(50);
 		assertEquals(0, this.c.getBalance());
 	}
+	
+	@Test
+	public void creditAccountAppendCreditsArray() {
+		double[] credits = this.c.getCreditsArray();
+		assertEquals(0, credits.length);
+		this.c.creditAccount(50);
+		assertEquals(1, credits.length);
+		assertEquals(50, credits[0]);
+	}
 }
