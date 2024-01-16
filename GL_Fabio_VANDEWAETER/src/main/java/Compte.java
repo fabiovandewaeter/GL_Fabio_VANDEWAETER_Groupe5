@@ -37,6 +37,14 @@ public class Compte {
 		return this.debits;
 	}
 	
+	public int getCreditIndex() {
+		return this.creditIndex;
+	}
+	
+	public int getDebitIndex() {
+		return this.debitIndex;
+	}
+	
 	public void creditAccount(double amount) {
 		if (amount >= 0) {
 			if (this.creditIndex < this.credits.length) {

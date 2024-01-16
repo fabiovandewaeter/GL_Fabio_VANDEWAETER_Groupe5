@@ -54,4 +54,36 @@ public class CompteTest {
 		this.c.creditAccount(50);
 		assertEquals(0, this.c.getBalance());
 	}
+	
+	@Test
+	public void creditAccountAppendCreditsArray() {
+		assertEquals(0, this.c.getCreditIndex());
+		this.c.creditAccount(50);
+		assertEquals(1, this.c.getCreditIndex());
+		assertEquals(50, this.c.getCredit());
+	}
+	
+	@Test
+	public void debitAccountAppendDebitsArray() {
+		assertEquals(0, this.c.getDebitIndex());
+		this.c.debitAccount(50);
+		assertEquals(1, this.c.getDebitIndex());
+		assertEquals(50, this.c.getDebit());
+	}
+	
+	@Test
+	public void creditAccountDoesNotAppendCreditsArrayWhenAdd0() {
+		assertEquals(0, this.c.getCreditIndex());
+		this.c.creditAccount(0);
+		assertEquals(0, this.c.getCreditIndex());
+		assertEquals(50, this.c.getCredit());
+	}
+	
+	@Test
+	public void debitAccountDoesNotAppendDebitsArrayWhenAdd0() {
+		assertEquals(0, this.c.getDebitIndex());
+		this.c.debitAccount(0);
+		assertEquals(0, this.c.getDebitIndex());
+		assertEquals(50, this.c.getDebit());
+	}
 }
