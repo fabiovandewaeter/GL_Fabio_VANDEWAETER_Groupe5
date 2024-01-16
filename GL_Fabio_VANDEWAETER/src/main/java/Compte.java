@@ -1,15 +1,17 @@
+import java.util.List;
+import java.util.ArrayList;
 
 public class Compte {
 	public final static int ARRAY_SIZE = 5;
 	private final static int MAX_AMOUNT = 100000;
-	private double[] credits;
-	private double[] debits;
+	private List<Double> credits;
+	private List<Double> debits;
 	private int creditIndex;
 	private int debitIndex;
 	
 	public Compte() {
-		this.credits = new double[ARRAY_SIZE];
-		this.debits = new double[ARRAY_SIZE];
+		this.credits = new ArrayList<>();
+		this.debits = new ArrayList<>();
 		this.creditIndex = 0;
 		this.debitIndex = 0;
 	}
@@ -30,11 +32,11 @@ public class Compte {
 		return res;
 	}
 	
-	public double[] getCreditsArray() {
+	public List<Double> getCreditsArray() {
 		return this.credits;
 	}
 	
-	public double[] getDebitsArray() {
+	public List<Double> getDebitsArray() {
 		return this.debits;
 	}
 	
@@ -48,14 +50,14 @@ public class Compte {
 	
 	public void creditAccount(double amount) {
 		if (amount > 0 && amount <= MAX_AMOUNT) {
-			if (this.creditIndex < this.credits.length) {
-				this.credits[this.creditIndex] = amount;
+			if (this.creditIndex < ARRAY_SIZE) {
+				this.credits.add(amount);
 				this.creditIndex++;
 			}
 			else {
 				double sum = this.getCredit();
-				this.credits = new double[ARRAY_SIZE];
-				this.credits[0] = sum;
+				this.credits.clear();
+				this.credits.add(sum);
 				this.creditIndex = 0;
 			}
 		}
@@ -63,14 +65,14 @@ public class Compte {
 	
 	public void debitAccount(double amount) {
 		if (amount > 0 && amount <= MAX_AMOUNT) {
-			if (this.debitIndex < this.debits.length) {
-				this.debits[this.debitIndex] = amount;
+			if (this.debitIndex < ARRAY_SIZE) {
+				this.debits.add(amount);
 				this.debitIndex++;
 			}
 			else {
 				double sum = this.getDebit();
-				this.debits = new double[ARRAY_SIZE];
-				this.debits[0] = sum;
+				this.debits.clear();
+				this.debits.add(sum);
 				this.debitIndex = 0;
 			}
 		}
