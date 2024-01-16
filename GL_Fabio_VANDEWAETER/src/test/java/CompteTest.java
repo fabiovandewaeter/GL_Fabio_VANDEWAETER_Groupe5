@@ -76,7 +76,7 @@ public class CompteTest {
 		assertEquals(0, this.c.getCreditIndex());
 		this.c.creditAccount(0);
 		assertEquals(0, this.c.getCreditIndex());
-		assertEquals(50, this.c.getCredit());
+		assertEquals(0, this.c.getCredit());
 	}
 	
 	@Test
@@ -84,6 +84,6 @@ public class CompteTest {
 		assertEquals(0, this.c.getDebitIndex());
 		this.c.debitAccount(0);
 		assertEquals(0, this.c.getDebitIndex());
-		assertEquals(50, this.c.getDebit());
+		assertEquals(0, this.c.getDebit());
 	}
 }

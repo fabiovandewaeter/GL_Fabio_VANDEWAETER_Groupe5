@@ -46,7 +46,7 @@ public class Compte {
 	}
 	
 	public void creditAccount(double amount) {
-		if (amount >= 0) {
+		if (amount > 0) {
 			if (this.creditIndex < this.credits.length) {
 				this.credits[this.creditIndex] = amount;
 				this.creditIndex++;
@@ -61,7 +61,7 @@ public class Compte {
 	}
 	
 	public void debitAccount(double amount) {
-		if (amount >= 0) {
+		if (amount > 0) {
 			if (this.debitIndex < this.debits.length) {
 				this.debits[this.debitIndex] = amount;
 				this.debitIndex++;
