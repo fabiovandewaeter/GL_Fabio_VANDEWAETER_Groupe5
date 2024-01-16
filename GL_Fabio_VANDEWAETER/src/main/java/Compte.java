@@ -1,6 +1,7 @@
 
 public class Compte {
 	public final static int ARRAY_SIZE = 5;
+	private final static int MAX_AMOUNT = 100000;
 	private double[] credits;
 	private double[] debits;
 	private int creditIndex;
@@ -46,7 +47,7 @@ public class Compte {
 	}
 	
 	public void creditAccount(double amount) {
-		if (amount > 0) {
+		if (amount > 0 && amount <= MAX_AMOUNT) {
 			if (this.creditIndex < this.credits.length) {
 				this.credits[this.creditIndex] = amount;
 				this.creditIndex++;
@@ -61,7 +62,7 @@ public class Compte {
 	}
 	
 	public void debitAccount(double amount) {
-		if (amount > 0) {
+		if (amount > 0 && amount <= MAX_AMOUNT) {
 			if (this.debitIndex < this.debits.length) {
 				this.debits[this.debitIndex] = amount;
 				this.debitIndex++;
