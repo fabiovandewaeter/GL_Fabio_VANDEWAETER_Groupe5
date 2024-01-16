@@ -72,6 +72,32 @@ public class CompteTest {
 	}
 	
 	@Test
+	public void creditAccountResetCreditsArrayWhenMaxCapacityReached() {
+		assertEquals(0, this.c.getCreditIndex());
+		for(int i=0; i<Compte.ARRAY_SIZE; i++) {
+			this.c.creditAccount(50);
+		}
+		assertEquals(Compte.ARRAY_SIZE, this.c.getCreditIndex());
+		double beforeReset = this.c.getCredit();
+		this.c.creditAccount(50);
+		assertEquals(0, this.c.getCreditIndex());
+		assertEquals(beforeReset, this.c.getCredit());
+	}
+	
+	@Test
+	public void debitAccountResetDebitsArrayWhenMaxCapacityReached() {
+		assertEquals(0, this.c.getDebitIndex());
+		for(int i=0; i<Compte.ARRAY_SIZE; i++) {
+			this.c.debitAccount(50);
+		}
+		assertEquals(Compte.ARRAY_SIZE, this.c.getDebitIndex());
+		double beforeReset = this.c.getDebit();
+		this.c.debitAccount(50);
+		assertEquals(0, this.c.getDebitIndex());
+		assertEquals(beforeReset, this.c.getDebit());
+	}
+	
+	@Test
 	public void creditAccountDoesNotAppendCreditsArrayWhenAdd0() {
 		assertEquals(0, this.c.getCreditIndex());
 		this.c.creditAccount(0);
@@ -85,5 +111,29 @@ public class CompteTest {
 		this.c.debitAccount(0);
 		assertEquals(0, this.c.getDebitIndex());
 		assertEquals(0, this.c.getDebit());
+	}
+	
+	@Test
+	public void creditAccountDoesNotAppendCreditsArrayWhenMoreThan100000() {
+		assertEquals(0, this.c.getCreditIndex());
+		this.c.creditAccount(100000);
+		this.c.creditAccount(100000);
+		assertEquals(2, this.c.getCreditIndex());
+		assertEquals(200000, this.c.getCredit());
+		this.c.creditAccount(100001);
+		assertEquals(2, this.c.getCreditIndex());
+		assertEquals(200000, this.c.getCredit());
+	}
+	
+	@Test
+	public void debitAccountDoesNotAppendDebitsArrayWhenMoreThan100000() {
+		assertEquals(0, this.c.getDebitIndex());
+		this.c.debitAccount(100000);
+		this.c.debitAccount(100000);
+		assertEquals(2, this.c.getDebitIndex());
+		assertEquals(200000, this.c.getDebit());
+		this.c.debitAccount(100001);
+		assertEquals(2, this.c.getDebitIndex());
+		assertEquals(200000, this.c.getDebit());
 	}
 }

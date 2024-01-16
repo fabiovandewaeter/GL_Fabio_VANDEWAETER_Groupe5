@@ -1,6 +1,6 @@
 
 public class Compte {
-	private final static int ARRAY_SIZE = 5;
+	public final static int ARRAY_SIZE = 5;
 	private double[] credits;
 	private double[] debits;
 	private int creditIndex;
