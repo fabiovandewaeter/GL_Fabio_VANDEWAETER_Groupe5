@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 public class CompteEpargneTest extends CompteTest{
 	private final static double INTEREST_RATE = 2;
 	
-	@BeforeEach
-	void init() {
-		this.c = new CompteEpargne(INTEREST_RATE);
+	public Compte createCompte() {
+		return new CompteEpargne(2.0);
 	}
 	
 	@Test

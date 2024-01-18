@@ -59,6 +59,7 @@ public class Compte {
 				this.credits.clear();
 				this.credits.add(sum);
 				this.creditIndex = 0;
+				this.creditAccount(amount);
 			}
 		}
 	}
@@ -74,6 +75,7 @@ public class Compte {
 				this.debits.clear();
 				this.debits.add(sum);
 				this.debitIndex = 0;
+				this.debitAccount(amount);
 			}
 		}
 	}
