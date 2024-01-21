@@ -94,4 +94,23 @@ public class BanqueTest {
 	public void getAccountBalanceThrowsAnAccountDoesNotExistException() {
 		assertThrows(AccountDoesNotExistException.class, () -> this.b.getAccountBalance(0));
 	}
+	
+	@Test void transferWorks() {
+		int c1 = this.b.createCompte();
+		int c2 = this.b.createCompteEpargne();
+		assertThrows(DebitGreaterThanBalanceException.class, () -> this.b.transfer(c1, c2, 1000));
+		assertThrows(DebitGreaterThanBalanceException.class, () -> this.b.transfer(c2, c1, 1000));
+	}
+	
+	@Test void transferThrowsAnAccountDoesNotExistException() {
+		int c1 = this.b.createCompte();
+		int c2 = 1;
+		assertThrows(AccountDoesNotExistException.class, () -> this.b.transfer(c1, c2, 1000));
+	}
+	
+	@Test void transferThrowsAnDebitGreaterThanBalanceExceptionWhenCompteEpargneDoesNotHaveEnoughMoney() {
+		int c1 = this.b.createCompteEpargne();
+		int c2 = this.b.createCompte();
+		assertThrows(DebitGreaterThanBalanceException.class, () -> this.b.transfer(c1, c2, 1000));
+	}
 }
