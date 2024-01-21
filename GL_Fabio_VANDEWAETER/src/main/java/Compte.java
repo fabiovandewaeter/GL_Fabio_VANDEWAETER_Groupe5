@@ -64,7 +64,7 @@ public class Compte {
 		}
 	}
 	
-	public void debitAccount(double amount) {
+	public void debitAccount(double amount) throws DebitGreaterThanBalanceException {
 		if (amount > 0 && amount <= MAX_AMOUNT) {
 			if (this.debitIndex < ARRAY_SIZE) {
 				this.debits.add(amount);

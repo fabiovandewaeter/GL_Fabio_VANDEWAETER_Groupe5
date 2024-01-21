@@ -33,7 +33,7 @@ public class CompteTest {
 	public void debitAccountIncrementsDebitVariable() {
 		assertEquals(0, this.c.getDebit());
 		this.c.creditAccount(50);
-		this.c.debitAccount(50);
+		assertDoesNotThrow(() -> this.c.debitAccount(50));
 		assertEquals(50, this.c.getDebit());
 	}
 	
@@ -47,7 +47,7 @@ public class CompteTest {
 	@Test
 	public void debitAccountDoesNotIncrementCreditVariableWhenNegativeAmount() {
 		assertEquals(0, this.c.getDebit());
-		this.c.debitAccount(-50);
+		assertDoesNotThrow(() -> this.c.debitAccount(-50));
 		assertEquals(0, this.c.getDebit());
 	}
 	
@@ -55,7 +55,7 @@ public class CompteTest {
 	public void accountBalanceIsGoodAfterCreditsAndDebits() {
 		assertEquals(0, this.c.getBalance());
 		this.c.creditAccount(100);
-		this.c.debitAccount(50);
+		assertDoesNotThrow(() -> this.c.debitAccount(50));
 		assertEquals(50, this.c.getBalance());
 		this.c.creditAccount(50);
 		assertEquals(100, this.c.getBalance());
@@ -73,7 +73,7 @@ public class CompteTest {
 	public void debitAccountAppendDebitsArray() {
 		assertEquals(0, this.c.getDebitIndex());
 		this.c.creditAccount(50);
-		this.c.debitAccount(50);
+		assertDoesNotThrow(() -> this.c.debitAccount(50));
 		assertEquals(1, this.c.getDebitIndex());
 		assertEquals(50, this.c.getDebit());
 	}
@@ -96,12 +96,12 @@ public class CompteTest {
 		assertEquals(0, this.c.getDebitIndex());
 		for(int i=0; i<Compte.ARRAY_SIZE; i++) {
 			this.c.creditAccount(50);
-			this.c.debitAccount(50);
+			assertDoesNotThrow(() -> this.c.debitAccount(50));
 		}
 		assertEquals(Compte.ARRAY_SIZE, this.c.getDebitIndex());
 		double beforeReset = this.c.getDebit();
 		this.c.creditAccount(1000);
-		this.c.debitAccount(50);
+		assertDoesNotThrow(() -> this.c.debitAccount(50));
 		assertEquals(1, this.c.getDebitIndex());
 		assertEquals(beforeReset+50, this.c.getDebit());
 	}
@@ -117,7 +117,7 @@ public class CompteTest {
 	@Test
 	public void debitAccountDoesNotAppendDebitsArrayWhenAdd0() {
 		assertEquals(0, this.c.getDebitIndex());
-		this.c.debitAccount(0);
+		assertDoesNotThrow(() -> this.c.debitAccount(0));
 		assertEquals(0, this.c.getDebitIndex());
 		assertEquals(0, this.c.getDebit());
 	}
@@ -141,11 +141,11 @@ public class CompteTest {
 		this.c.creditAccount(100000);
 		this.c.creditAccount(100000);
 		this.c.creditAccount(1);
-		this.c.debitAccount(100000);
-		this.c.debitAccount(100000);
+		assertDoesNotThrow(() -> this.c.debitAccount(100000));
+		assertDoesNotThrow(() -> this.c.debitAccount(100000));
 		assertEquals(200000, this.c.getDebit());
 		assertEquals(2, this.c.getDebitIndex());
-		this.c.debitAccount(100001);
+		assertDoesNotThrow(() -> this.c.debitAccount(100001));
 		assertEquals(2, this.c.getDebitIndex());
 		assertEquals(200000, this.c.getDebit());
 	}

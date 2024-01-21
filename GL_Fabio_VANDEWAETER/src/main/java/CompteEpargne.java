@@ -7,9 +7,12 @@ public class CompteEpargne extends Compte{
 		this.interestRate = interestRate;
 	}
 	
-	public void debitAccount(double amount) {
+	public void debitAccount(double amount) throws DebitGreaterThanBalanceException {
 		if ((this.getDebit() + amount) <= this.getCredit()) {
 			super.debitAccount(amount);
+		}
+		else {
+			throw new DebitGreaterThanBalanceException("Not enough credit to do this debit");
 		}
 	}
 }

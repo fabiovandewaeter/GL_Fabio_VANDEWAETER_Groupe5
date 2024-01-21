@@ -17,12 +17,13 @@ public class CompteEpargneTest extends CompteTest{
 		assertEquals(0, this.c.getDebit());
 	}
 	
+	/*
 	@Test
 	public void debitAccountDoesNotIncrementCreditVariableWhenShouldResultInNegativeBalance() {
 		assertEquals(0, this.c.getDebit());
 		this.c.debitAccount(50);
 		assertEquals(0, this.c.getDebit());
-	}
+	}*/
 	
 	@Test
 	public void debitAccountThrowsAnDebitGreaterThanBalanceExceptionWhenShouldResultInNegativeBalance() {
