@@ -25,4 +25,20 @@ public class Banque {
 		this.comptes.add(new CompteEpargne(2.0));
 		return this.comptes.size()-1;
 	}
+
+	public double getAccountBalance(int id) {
+		return this.comptes.get(id).getBalance();
+	}
+
+	public void creditCompte(int id, double amount) {
+		this.comptes.get(id).creditAccount(amount);
+	}
+	
+	public void debitCompte(int id, double amount) {
+		try {
+			this.comptes.get(id).debitAccount(amount);
+		} catch (DebitGreaterThanBalanceException e) {
+			e.printStackTrace();
+		}
+	}
 }
