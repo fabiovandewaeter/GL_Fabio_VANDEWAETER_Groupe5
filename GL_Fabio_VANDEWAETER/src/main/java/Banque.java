@@ -50,4 +50,9 @@ public class Banque {
 			e.printStackTrace();
 		}
 	}
+	
+	public void transfer(int c1, int c2, double amount) throws AccountDoesNotExistException, DebitGreaterThanBalanceException{
+		this.getAccount(c1).debitAccount(amount);
+		this.getAccount(c2).creditAccount(amount);
+	}
 }

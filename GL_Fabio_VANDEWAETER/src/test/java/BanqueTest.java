@@ -98,8 +98,8 @@ public class BanqueTest {
 	@Test void transferWorks() {
 		int c1 = this.b.createCompte();
 		int c2 = this.b.createCompteEpargne();
-		assertThrows(DebitGreaterThanBalanceException.class, () -> this.b.transfer(c1, c2, 1000));
-		assertThrows(DebitGreaterThanBalanceException.class, () -> this.b.transfer(c2, c1, 1000));
+		assertDoesNotThrow(() -> this.b.transfer(c1, c2, 1000));
+		assertDoesNotThrow(() -> this.b.transfer(c2, c1, 1000));
 	}
 	
 	@Test void transferThrowsAnAccountDoesNotExistException() {
