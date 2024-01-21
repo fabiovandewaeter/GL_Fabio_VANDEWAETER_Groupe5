@@ -8,7 +8,7 @@ public class CompteEpargneTest extends CompteTest{
 	private final static double INTEREST_RATE = 2;
 	
 	public Compte createCompte() {
-		return new CompteEpargne(2.0);
+		return new CompteEpargne(INTEREST_RATE);
 	}
 	
 	@Test
@@ -32,5 +32,12 @@ public class CompteEpargneTest extends CompteTest{
 		assertDoesNotThrow(() -> this.c.debitAccount(90));
 		assertDoesNotThrow(() -> this.c.debitAccount(10));
 		assertThrows(DebitGreaterThanBalanceException.class, () -> this.c.debitAccount(10));
+	}
+	
+	@Test
+	public void interestIsCorrectlyCalculated() {
+		assertEquals(INTEREST_RATE, this.c.getInterestRate());
+		this.c.creditAccount(1000);
+		assertEquals((INTEREST_RATE/100)*this.c.getCredit(), this.c.calculInterest());
 	}
 }
