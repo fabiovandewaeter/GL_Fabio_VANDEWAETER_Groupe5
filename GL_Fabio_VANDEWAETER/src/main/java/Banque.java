@@ -15,7 +15,16 @@ public class Banque {
 	public int numberOfComptes() {
 		return this.comptes.size();
 	}
-
+	
+	private Compte getAccount(int id) throws AccountDoesNotExistException {
+		if (id < this.comptes.size()) {
+			return this.comptes.get(id);
+		}
+		else {
+			throw new AccountDoesNotExistException("This account doesn't exist");
+		}
+	}
+	
 	public int createCompte() {
 		this.comptes.add(new Compte());
 		return this.comptes.size()-1;
@@ -26,17 +35,17 @@ public class Banque {
 		return this.comptes.size()-1;
 	}
 
-	public double getAccountBalance(int id) {
-		return this.comptes.get(id).getBalance();
+	public double getAccountBalance(int id) throws AccountDoesNotExistException {
+		return this.getAccount(id).getBalance();
 	}
 
-	public void creditCompte(int id, double amount) {
-		this.comptes.get(id).creditAccount(amount);
+	public void creditAccount(int id, double amount) throws AccountDoesNotExistException {
+		this.getAccount(id).creditAccount(amount);
 	}
 	
-	public void debitCompte(int id, double amount) {
+	public void debitAccount(int id, double amount) throws AccountDoesNotExistException {
 		try {
-			this.comptes.get(id).debitAccount(amount);
+			this.getAccount(id).debitAccount(amount);
 		} catch (DebitGreaterThanBalanceException e) {
 			e.printStackTrace();
 		}

@@ -1,4 +1,6 @@
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,33 +45,49 @@ public class BanqueTest {
 	public void creditAccountWorks() {
 		int id1 = this.b.createCompte();
 		int id2 = this.b.createCompteEpargne();
-		assertEquals(0, this.b.getAccountBalance(id1));
-		assertEquals(0, this.b.getAccountBalance(id2));
-		this.b.creditCompte(id1, 1000);
-		assertEquals(1000, this.b.getAccountBalance(id1));
-		assertEquals(0, this.b.getAccountBalance(id2));
+		try {
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id1));
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id2));
+			assertEquals(0, this.b.getAccountBalance(id1));
+			assertEquals(0, this.b.getAccountBalance(id2));
+			assertDoesNotThrow(() -> this.b.creditAccount(id1, 1000));
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id1));
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id2));
+			assertEquals(1000, this.b.getAccountBalance(id1));
+			assertEquals(0, this.b.getAccountBalance(id2));
+		} catch (AccountDoesNotExistException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void debitAccountWorks() {
 		int id1 = this.b.createCompte();
 		int id2 = this.b.createCompteEpargne();
-		assertEquals(0, this.b.getAccountBalance(id1));
-		assertEquals(0, this.b.getAccountBalance(id2));
-		this.b.creditCompte(id1, 1000);
-		this.b.debitCompte(id1, 500);
-		assertEquals(500, this.b.getAccountBalance(id1));
-		assertEquals(0, this.b.getAccountBalance(id2));
+		try {
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id1));
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id2));
+			assertEquals(0, this.b.getAccountBalance(id1));
+			assertEquals(0, this.b.getAccountBalance(id2));
+			assertDoesNotThrow(() -> this.b.creditAccount(id1, 1000));
+			assertDoesNotThrow(() -> this.b.debitAccount(id1, 500));
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id1));
+			assertDoesNotThrow(() -> this.b.getAccountBalance(id2));
+			assertEquals(500, this.b.getAccountBalance(id1));
+			assertEquals(0, this.b.getAccountBalance(id2));
+		} catch (AccountDoesNotExistException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void creditAccountThrowsAnAccountDoesNotExistException() {
-		assertThrows(AccountDoesNotExistException.class, () -> this.b.creditAccount(0));
+		assertThrows(AccountDoesNotExistException.class, () -> this.b.creditAccount(0, 1000));
 	}
 	
 	@Test
 	public void debitAccountThrowsAnAccountDoesNotExistException() {
-		assertThrows(AccountDoesNotExistException.class, () -> this.b.debitAccount(0));
+		assertThrows(AccountDoesNotExistException.class, () -> this.b.debitAccount(0, 1000));
 	}
 	
 	@Test
