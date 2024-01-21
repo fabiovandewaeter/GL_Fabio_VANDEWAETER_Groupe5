@@ -38,4 +38,27 @@ public class BanqueTest {
 		id = this.b.createCompte();
 		assertEquals(1, id);
 	}
+	
+	@Test
+	public void creditAccountWorks() {
+		int id1 = this.b.createCompte();
+		int id2 = this.b.createCompteEpargne();
+		assertEquals(0, this.b.getAccountBalance(id1));
+		assertEquals(0, this.b.getAccountBalance(id2));
+		this.b.creditCompte(id1, 1000);
+		assertEquals(1000, this.b.getAccountBalance(id1));
+		assertEquals(0, this.b.getAccountBalance(id2));
+	}
+	
+	@Test
+	public void debitAccountWorks() {
+		int id1 = this.b.createCompte();
+		int id2 = this.b.createCompteEpargne();
+		assertEquals(0, this.b.getAccountBalance(id1));
+		assertEquals(0, this.b.getAccountBalance(id2));
+		this.b.creditCompte(id1, 1000);
+		this.b.debitCompte(id1, 500);
+		assertEquals(500, this.b.getAccountBalance(id1));
+		assertEquals(0, this.b.getAccountBalance(id2));
+	}
 }
