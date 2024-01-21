@@ -23,4 +23,8 @@ public class CompteEpargne extends Compte{
 	public Double calculInterest() {
 		return (this.interestRate / 100) * this.getBalance();
 	}
+
+	public void echeance() {
+		this.creditAccount(this.calculInterest());
+	}
 }

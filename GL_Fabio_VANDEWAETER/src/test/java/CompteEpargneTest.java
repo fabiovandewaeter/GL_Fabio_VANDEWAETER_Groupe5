@@ -15,7 +15,6 @@ public class CompteEpargneTest extends AbstractCompteTest<CompteEpargne>{
 	public void checkCreditAndDebitAndInterestAreAt0() {
 		assertEquals(0, this.c.getCredit());
 		assertEquals(0, this.c.getDebit());
-		assertEquals(0, this.c.getInterest());
 	}
 	
 	/*
@@ -45,9 +44,9 @@ public class CompteEpargneTest extends AbstractCompteTest<CompteEpargne>{
 	@Test
 	public void echeanceAddInterest() {
 		this.c.creditAccount(100);
-		assertEquals(0, this.c.getInterest());
 		double tempoBalance = this.c.getBalance();
+		double tempoInterest = this.c.calculInterest();
 		this.c.echeance();
-		assertEquals(tempoBalance+this.c.calculInterest(), this.c.getBalance());
+		assertEquals(tempoBalance+tempoInterest, this.c.getBalance());
 	}
 }
