@@ -61,4 +61,19 @@ public class BanqueTest {
 		assertEquals(500, this.b.getAccountBalance(id1));
 		assertEquals(0, this.b.getAccountBalance(id2));
 	}
+	
+	@Test
+	public void creditAccountThrowsAnAccountDoesNotExistException() {
+		assertThrows(AccountDoesNotExistException.class, () -> this.b.creditAccount(0));
+	}
+	
+	@Test
+	public void debitAccountThrowsAnAccountDoesNotExistException() {
+		assertThrows(AccountDoesNotExistException.class, () -> this.b.debitAccount(0));
+	}
+	
+	@Test
+	public void getAccountBalanceThrowsAnAccountDoesNotExistException() {
+		assertThrows(AccountDoesNotExistException.class, () -> this.b.getAccountBalance(0));
+	}
 }
