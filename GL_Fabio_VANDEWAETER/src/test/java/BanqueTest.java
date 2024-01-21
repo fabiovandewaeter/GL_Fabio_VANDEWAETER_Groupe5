@@ -20,14 +20,22 @@ public class BanqueTest {
 	@Test
 	public void createCompteWorks() {
 		assertEquals(0, this.b.numberOfComptes());
-		Compte newAccount = this.b.createCompte();
+		this.b.createCompte();
 		assertEquals(1, this.b.numberOfComptes());
 	}
 	
 	@Test
 	public void createCompteEpargneWorks() {
 		assertEquals(0, this.b.numberOfComptes());
-		CompteEpargne newAccount = this.b.createCompteEpargne();
+		this.b.createCompteEpargne();
 		assertEquals(1, this.b.numberOfComptes());
+	}
+	
+	@Test
+	public void currentIdIncresesWithCompteCreation() {
+		int id = this.b.createCompte();
+		assertEquals(0, id);
+		id = this.b.createCompte();
+		assertEquals(1, id);
 	}
 }

@@ -16,15 +16,13 @@ public class Banque {
 		return this.comptes.size();
 	}
 
-	public Compte createCompte() {
-		Compte newAccount = new Compte();
-		this.comptes.add(newAccount);
-		return newAccount;
+	public int createCompte() {
+		this.comptes.add(new Compte());
+		return this.comptes.size()-1;
 	}
 	
-	public CompteEpargne createCompteEpargne() {
-		CompteEpargne newAccount = new CompteEpargne(2.0);
-		this.comptes.add(newAccount);
-		return newAccount;
+	public int createCompteEpargne() {
+		this.comptes.add(new CompteEpargne(2.0));
+		return this.comptes.size()-1;
 	}
 }
