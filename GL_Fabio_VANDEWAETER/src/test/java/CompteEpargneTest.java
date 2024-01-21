@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class CompteEpargneTest extends CompteTest{
+public class CompteEpargneTest extends AbstractCompteTest<CompteEpargne>{
 	private final static double INTEREST_RATE = 2;
 	
-	public Compte createCompte() {
+	public CompteEpargne createCompte() {
 		return new CompteEpargne(INTEREST_RATE);
 	}
 	

@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Compte {
+public class Compte extends AbstractCompte {
 	public final static int ARRAY_SIZE = 5;
 	private final static int MAX_AMOUNT = 100000;
 	private List<Double> credits;

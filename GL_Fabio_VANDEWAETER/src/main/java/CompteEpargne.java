@@ -15,4 +15,12 @@ public class CompteEpargne extends Compte{
 			throw new DebitGreaterThanBalanceException("Not enough credit to do this debit");
 		}
 	}
+	
+	public Double getInterestRate() {
+		return this.interestRate;
+	}
+
+	public Double calculInterest() {
+		return (this.interestRate / 100) * this.getBalance();
+	}
 }
