@@ -1,21 +1,41 @@
-image: maven:latest
+name: Java CI
 
-stages:
-    - build
-    - test
+on:
+  push:
+    branches:
+      - main
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-cache:
-  paths:
-    - .m2/repository/
-    - target/
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-build:
-  stage: build
-  script:
-    - mvn compile
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
 
-test:
-  stage: test
-  script:
-    - mvn test
+    - name: Build with Maven
+      run: mvn compile
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Test with Maven
+      run: mvn test
