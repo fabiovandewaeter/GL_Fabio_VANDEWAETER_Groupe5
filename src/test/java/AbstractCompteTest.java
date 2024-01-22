@@ -16,7 +16,7 @@ public abstract class AbstractCompteTest<T extends AbstractCompte> {
 	@Test
 	public void newAccountsStartWithCreditAndDebitOf0() {
 		Compte c2 = new Compte();
-		assertEquals(10, c2.getCredit());
+		assertEquals(0, c2.getCredit());
 		assertEquals(0, c2.getDebit());
 	}
 	
